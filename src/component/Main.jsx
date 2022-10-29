@@ -6,6 +6,7 @@ import { GrRotateLeft, GrRotateRight } from "react-icons/gr";
 import { CgMergeVertical, CgMergeHorizontal } from "react-icons/cg";
 import { IoMdUndo, IoMdRedo, IoIosImage } from "react-icons/io";
 import storeData from "./LinkedList";
+
 const Main = () => {
   const filterElement = [
     {
@@ -55,6 +56,9 @@ const Main = () => {
       ...state,
       [e.target.name]: e.target.value,
     });
+    const data = state;
+    data.property = property;
+    storeData.insert(data);
   };
   const leftRotate = () => {
     setState({
@@ -99,12 +103,18 @@ const Main = () => {
   const redo = () => {
     const data = storeData.redoEdit();
     if (data) {
+      if (data.property) {
+        setProperty(data.property);
+      }
       setState(data);
     }
   };
   const undo = () => {
     const data = storeData.undoEdit();
     if (data) {
+      if (data.property) {
+        setProperty(data.property);
+      }
       setState(data);
     }
   };
