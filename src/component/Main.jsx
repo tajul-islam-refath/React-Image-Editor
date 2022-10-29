@@ -172,6 +172,26 @@ const Main = () => {
       image: base64Url,
     });
   };
+
+  const reset = () => {
+    setState({
+      image: "",
+      brightness: 100,
+      grayscale: 0,
+      sepia: 0,
+      saturate: 100,
+      contrast: 100,
+      hueRotate: 0,
+      rotate: 0,
+      vartical: 1,
+      horizental: 1,
+    });
+
+    setProperty({
+      name: "brightness",
+      maxValue: 200,
+    });
+  };
   const saveImage = () => {
     const canvas = document.createElement("canvas");
     canvas.width = details.naturalHeight;
@@ -251,7 +271,7 @@ const Main = () => {
               </div>
             </div>
             <div className="reset">
-              <button>Reset</button>
+              <button onClick={() => reset()}>Reset</button>
               <button onClick={saveImage} className="save">
                 Save Image
               </button>
